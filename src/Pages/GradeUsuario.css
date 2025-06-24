@@ -1,0 +1,42 @@
+.calendario-adm {
+    background-color: #ffffcc;
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-top: 5vh;
+}
+
+.select-dia {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.calendario {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    justify-content: center;
+}
+
+.dias {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.dias:hover {
+    background-color: #ffff5e;
+    color: black;
+    transform: scale(1.05);
+}
