@@ -1,0 +1,10 @@
+.opcoes{
+    width: 52vh;
+    padding: 15px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+    text-decoration: none;
+}
