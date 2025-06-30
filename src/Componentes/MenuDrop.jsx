@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import './MenuDrop.css'
 
-export const MenuDrop = ({position, setPosition}) => {
+export const MenuDrop = ({cargo, setCargo}) => {
 
 
     const handleOption = (e) => {
         const value = e.target.value
-        setPosition(value)
+        setCargo(value)
         console.log('Valor selecionado:', value);
     }
 
     return(
         <div>
-            <select name="" className="opcoes" value={position} onChange={handleOption}>
+            <select className="opcoes" value={cargo} onChange={handleOption}>
                 <option value="">Cargos</option>
-                <option value="cidadao">Paciente</option>
-                <option value="cidadao">Admin</option>
+                <option value="paciente">Paciente</option>
+                <option value="admin">Admin</option>
             </select>
         </div>
     )
