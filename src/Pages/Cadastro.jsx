@@ -13,9 +13,20 @@ export const Cadastro = () => {
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const dados = {nome, email, senha}
-        const resposta = await registrarUsuario(dados)
-        console.log(resposta)
+        if (!nome || !email || !senha || !cargo) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+        const dados = {nome, email, senha, cargo}
+        try {
+            const resposta = await registrarUsuario(dados);
+            console.log(resposta.data); // Exibe a resposta da API
+        } catch (error) {
+            console.error("Erro ao registrar usuário:", error.response ? error.response.data : error.message);
+            alert("Erro ao registrar usuário. Verifique os dados e tente novamente.");
+            console.log("DEu erro")
+        }
+        
     }
 
     return(

@@ -1,4 +1,4 @@
-import User from '../models/User.js'; // Ajuste o caminho conforme a sua estrutura de pastas e adicione .js
+import db from '../models/index.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'; // Garante que as variáveis de ambiente sejam carregadas
@@ -9,7 +9,7 @@ export const registrar = async (req, res) => {
     const { nome, email, senha, cargo } = req.body;
 
     // Cria e salva o usuário no banco
-    const novoUsuario = await User.create({ nome, email, senha, cargo });
+    const novoUsuario = await db.User.create({ nome, email, senha, cargo });
 
     res.status(201).json({
       mensagem: 'Usuário criado com sucesso',
@@ -30,7 +30,7 @@ export const login = async (req, res) => {
 
   try {
     // Busca usuário pelo e-mail
-    const usuario = await User.findOne({ where: { email } });
+    const usuario = await db.User.findOne({ where: { email } });
 
     // Verifica se encontrou e compara senha
     if (!usuario || !(await bcrypt.compare(senha, usuario.senha))) {

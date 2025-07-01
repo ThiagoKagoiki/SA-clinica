@@ -19,7 +19,7 @@ const sequelize = new Sequelize(
 const db = {
   Sequelize,
   sequelize,
-  User: UserModel(sequelize, Sequelize),
+  User: UserModel(sequelize),
 };
 
 export default db;

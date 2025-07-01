@@ -1,9 +1,8 @@
 import bcrypt from 'bcryptjs';
-import { DataTypes } from 'sequelize'; // Import DataTypes directly
+import { DataTypes } from 'sequelize';
 
-// Export a function that takes sequelize as an argument
 export default (sequelize) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('Users', {
     nome: DataTypes.STRING, // Nome do usuário
     email: {
       type: DataTypes.STRING,
@@ -12,8 +11,8 @@ export default (sequelize) => {
     senha: DataTypes.STRING, // Senha que será criptografada
     cargo: {
       // Enum para cargos permitidos
-      type: DataTypes.ENUM('admin', 'medico', 'recepcionista'),
-      defaultValue: 'recepcionista' // padrão ao criar usuário
+      type: DataTypes.ENUM('admin', 'paciente'),
+      defaultValue: 'paciente' // padrão ao criar usuário
     }
   });
 
