@@ -22,6 +22,10 @@ export const Cadastro = () => {
         try {
             const resposta = await registrarUsuario(dados);
             console.log(resposta.data); // Exibe a resposta da API
+            setNome('')
+            setEmail('')
+            setSenha('')
+            setCargo('')
         } catch (error) {
             console.error("Erro ao registrar usuário:", error.response ? error.response.data : error.message);
             alert("Erro ao registrar usuário. Verifique os dados e tente novamente.");
