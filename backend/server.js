@@ -3,18 +3,18 @@ import dotenv from 'dotenv';
 import db from './models/index.js'; // Certifique-se de que há um `index.js` dentro de `models/`
 import { autenticar, somenteAdmin } from './middleware/auth.js';
 import {registrar, login} from './controllers/authController.js'
+import cors from 'cors';
 
 dotenv.config(); // Carrega variáveis do .env
 
 const app = express();
-// import cors from 'cors';
+
+app.use(cors({
+  origin: 'http://localhost:5174',
+  credentials: true // ou '*', mas apenas em ambiente de dev
+})); // Permite leitura de JSON
 
 app.use(express.json())
-
-// app.use(cors({
-//   origin: 'http://localhost:5173',
-//   credentials: true // ou '*', mas apenas em ambiente de dev
-// })); // Permite leitura de JSON
 
 // Rota pública: criar novo usuário
 app.post('/registrar', registrar);
