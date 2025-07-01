@@ -10,7 +10,7 @@ dotenv.config(); // Carrega variáveis do .env
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:5174',
+  origin: 'http://localhost:5173',
   credentials: true // ou '*', mas apenas em ambiente de dev
 })); // Permite leitura de JSON
 
