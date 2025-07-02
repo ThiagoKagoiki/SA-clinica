@@ -1,0 +1,119 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #eff6ff, #c7d2fe);
+  padding: 1.5rem;
+}
+
+.wrapper {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.add-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.add-button:hover {
+  background-color: #1d4ed8;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.consulta-item {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: box-shadow 0.2s;
+}
+.consulta-item:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.consulta-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.consulta-item-info {
+  flex: 1;
+}
+
+.consulta-item-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.consulta-item-details {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.consulta-status {
+  background-color: #d1fae5;
+  color: #065f46;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.consulta-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.action-button-yellow {
+  background-color: #f59e0b;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+.action-button-yellow:hover {
+  background-color: #d97706;
+}
+
+.action-button-red {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+.action-button-red:hover {
+  background-color: #dc2626;
+}
