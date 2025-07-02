@@ -1,4 +1,5 @@
 import './App.css'
+import { PrivateRoute } from './Componentes/PrivateRoute'
 import { AuthProvider } from './context/AuthContext'
 import { Cadastro } from './Pages/Cadastro'
 import { GradeMedico } from './Pages/GradeMedico'
@@ -10,16 +11,29 @@ function App() {
 
   return (
     <>
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Cadastro/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/gradeUser' element={<GradeUsuario/>}/>
-          <Route path='/gradeMed' element={<GradeMedico/>}/>
-        </Routes>
-      </BrowserRouter> */}
       <AuthProvider>
-        <Login/>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Cadastro/>}/>
+            <Route path='/login' element={<Login/>}/>
+
+            <Route path='/' element={
+              <PrivateRoute>
+
+                <GradeMedico/>
+
+              </PrivateRoute>
+            }/>
+
+            <Route path='/' element={
+              <PrivateRoute>
+
+                <GradeUsuario/>
+
+              </PrivateRoute>
+            }/>
+          </Routes>
+        </BrowserRouter>
       </AuthProvider>
     </>
   )
