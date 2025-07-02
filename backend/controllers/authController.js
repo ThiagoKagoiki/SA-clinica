@@ -71,3 +71,20 @@ export const addConsulta = async(req, res) => {
     });
   }
 }
+
+export const deletarConsulta = async(req, res) => {
+  try {
+    const { id } = req.body;
+
+    await db.Consulta.destroy({ where: {id} });
+
+    res.status(201).json({
+      mensagem: 'Consulta deletada com sucesso',
+    });
+  } catch (err) {
+    res.status(400).json({
+      erro: 'Erro ao deletar Consulta',
+      detalhes: err.message
+    });
+  }
+}
