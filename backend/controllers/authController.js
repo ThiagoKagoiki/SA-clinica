@@ -75,7 +75,7 @@ export const addConsulta = async(req, res) => {
 
 export const deletarConsulta = async(req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
 
     await db.Consulta.destroy({ where: {id} });
 

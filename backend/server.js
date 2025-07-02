@@ -37,7 +37,7 @@ app.get('/admin', autenticar, somenteAdmin, (req, res) => {
 
 app.post('/addConsulta', addConsulta);
 
-app.delete('/removerConsulta', deletarConsulta);
+app.delete('/removerConsulta/:id', deletarConsulta);
 
 app.put('/editarConsulta', editarConsulta);
 

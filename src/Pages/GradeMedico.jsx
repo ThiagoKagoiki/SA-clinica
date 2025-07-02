@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './GradeMedico.css'
-import { adicionarConsulta, verConsulta } from '../services/api';
+import { adicionarConsulta, deletarConsulta, verConsulta } from '../services/api';
 import { MenuMedico } from '../Componentes/MenuMedico';
 import { MenuHorario } from '../Componentes/MenuHorario';
 
@@ -46,7 +46,18 @@ export const GradeMedico = () => {
       alert("Erro ao adicionar consulta")
       console.log("erro: ", error)
     }
+  }
 
+  const removerConsulta = async(id) => {
+    try{
+      const resposta = await deletarConsulta(id)
+      console.log(resposta.data)
+      setConsultas(prev => prev.filter(consulta => consulta.id !== id));
+    }catch(error){
+      console.error("Erro ao deletar consulta: ", error.response ? error.response.data : error.message)
+      alert("Erro ao deletar consulta")
+      console.log(error)
+    }
   }
 
   return (
@@ -65,7 +76,7 @@ export const GradeMedico = () => {
 
           <div className="grid">
             {consultas.map((consulta) => (
-              <div className="consulta-item">
+              <div className="consulta-item" key={consulta.id}>
                 <div className="consulta-item-header">
                   <div className="consulta-item-info">
                     <h3 className="consulta-item-title">DR. {consulta.medico}</h3>
@@ -76,7 +87,7 @@ export const GradeMedico = () => {
                   </div>
                   <div className="consulta-actions">
                     <button className="action-button-yellow"></button>
-                    <button className="action-button-red"></button>
+                    <button className="action-button-red" onClick={() => removerConsulta(consulta.id)}></button>
                   </div>
                 </div>
               </div>

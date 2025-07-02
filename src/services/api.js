@@ -20,5 +20,5 @@ export const acessarAdmin = () => API.get('/admin');
 
 export const adicionarConsulta = (dados) => API.post('/addConsulta', dados)
 export const verConsulta = () => API.get('/consultas')
-export const deletarConsulta = (dados) => API.delete('/removerConsulta', {data: dados})
+export const deletarConsulta = (id) => API.delete(`/removerConsulta/${id}`)
 export const editarConsulta = (dados) => API.put('/editarConsulta', dados)
