@@ -117,3 +117,7 @@
 .action-button-red:hover {
   background-color: #dc2626;
 }
+
+.addForm{
+  display: flex;
+}
