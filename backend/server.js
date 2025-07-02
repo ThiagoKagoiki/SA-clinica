@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import db from './models/index.js'; // Certifique-se de que há um `index.js` dentro de `models/`
 import { autenticar, somenteAdmin } from './middleware/auth.js';
-import {registrar, login} from './controllers/authController.js'
+import { registrar, login, addConsulta } from './controllers/authController.js'
 import cors from 'cors';
 
 dotenv.config(); // Carrega variáveis do .env
@@ -14,12 +14,12 @@ app.use(cors({
   credentials: true // ou '*', mas apenas em ambiente de dev
 })); // Permite leitura de JSON
 
+//Usuarios
+
 app.use(express.json())
 
-// Rota pública: criar novo usuário
 app.post('/registrar', registrar);
 
-// Rota pública: login e geração do token
 app.post('/login', login);
 
 // Rota protegida: acessível para qualquer usuário autenticado
@@ -31,6 +31,11 @@ app.get('/painel', autenticar, (req, res) => {
 app.get('/admin', autenticar, somenteAdmin, (req, res) => {
   res.send("Bem-vindo à área administrativa da clínica.");
 });
+
+
+//Consultas
+
+app.post('/addConsulta', addConsulta);
 
 // Sincroniza os modelos com o banco e inicia o servidor
 db.sequelize.sync().then(() => {

@@ -2,6 +2,11 @@ import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
   const Consulta = sequelize.define('Consultas', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     horario: {
       type: DataTypes.ENUM('10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'),
       allowNull: false

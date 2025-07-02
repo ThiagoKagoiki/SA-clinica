@@ -58,15 +58,15 @@ export const addConsulta = async(req, res) => {
   try {
     const { horario, medico, emailUser } = req.body;
 
-    const novoUsuario = await db.Consulta.create({ horario, medico, emailUser });
+    const novaConsulta = await db.Consulta.create({ horario, medico, emailUser });
 
     res.status(201).json({
       mensagem: 'Consulta criada com sucesso',
-      usuario: novoUsuario
+      consulta: novaConsulta
     });
   } catch (err) {
     res.status(400).json({
-      erro: 'Erro ao criar usuário',
+      erro: 'Erro ao criar Consulta',
       detalhes: err.message
     });
   }

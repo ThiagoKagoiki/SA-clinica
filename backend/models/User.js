@@ -3,6 +3,11 @@ import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
   const User = sequelize.define('Users', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     nome: DataTypes.STRING, // Nome do usuário
     email: {
       type: DataTypes.STRING,
