@@ -2,6 +2,7 @@ import db from '../models/index.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'; // Garante que as variáveis de ambiente sejam carregadas
+import { where } from 'sequelize';
 
 
 //Usuario
@@ -84,6 +85,24 @@ export const deletarConsulta = async(req, res) => {
   } catch (err) {
     res.status(400).json({
       erro: 'Erro ao deletar Consulta',
+      detalhes: err.message
+    });
+  }
+}
+
+export const editarConsulta = async(req, res) => {
+  try {
+    const { id, horario, medico, emailUser } = req.body;
+
+    const novaConsulta = await db.Consulta.update({ horario, medico, emailUser }, {where: {id}});
+
+    res.status(201).json({
+      mensagem: 'Consulta editada com sucesso',
+      consulta: novaConsulta
+    });
+  } catch (err) {
+    res.status(400).json({
+      erro: 'Erro ao editar Consulta',
       detalhes: err.message
     });
   }

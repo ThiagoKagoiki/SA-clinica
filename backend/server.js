@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import db from './models/index.js'; // Certifique-se de que há um `index.js` dentro de `models/`
 import { autenticar, somenteAdmin } from './middleware/auth.js';
-import { registrar, login, addConsulta, deletarConsulta } from './controllers/authController.js'
+import { registrar, login, addConsulta, deletarConsulta, editarConsulta } from './controllers/authController.js'
 import cors from 'cors';
 
 dotenv.config(); // Carrega variáveis do .env
@@ -38,6 +38,8 @@ app.get('/admin', autenticar, somenteAdmin, (req, res) => {
 app.post('/addConsulta', addConsulta);
 
 app.delete('/removerConsulta', deletarConsulta);
+
+app.put('/editarConsulta', editarConsulta);
 
 // Sincroniza os modelos com o banco e inicia o servidor
 db.sequelize.sync().then(() => {
