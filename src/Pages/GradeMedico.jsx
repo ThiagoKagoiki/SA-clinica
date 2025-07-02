@@ -107,12 +107,35 @@ export const GradeMedico = () => {
         <div className="card">
           <div className="card-header">
             <h1 className="card-title">Consultas Médicas</h1>
-            <form onSubmit={handlesubmit} className='addForm'>
-              <MenuHorario horario={horario} setHorario={setHorario} />
-              <MenuMedico medico={medico} setMedico={setMedico} />
-              <input type="text" placeholder='email do paciente' value={emailUser} onChange={e => setEmailUser(e.target.value)} />
-              <button className="add-button">Adicionar Consulta</button>
-            </form>
+            <div className='forms-container'>
+              <form onSubmit={handlesubmit} className='addForm'>
+                <MenuHorario horario={horario} setHorario={setHorario} />
+                <MenuMedico medico={medico} setMedico={setMedico} />
+                <input type="text" placeholder='email do paciente' value={emailUser} onChange={e => setEmailUser(e.target.value)} />
+                <button className="add-button">Adicionar Consulta</button>
+              </form>
+            </div>
+
+            <div className="edit-card">
+              <h2>Editar Consulta pelo ID</h2>
+              <form onSubmit={salvarEdicao} className="editForm">
+                <input
+                  type="number"
+                  placeholder="ID da Consulta"
+                  value={idEdit}
+                  onChange={(e) => setIdEdit(e.target.value)}
+                />
+                <MenuHorario horario={horarioEdit} setHorario={setHorarioEdit} />
+                <MenuMedico medico={medicoEdit} setMedico={setMedicoEdit} />
+                <input
+                  type="text"
+                  placeholder="Email do Paciente"
+                  value={emailUserEdit}
+                  onChange={(e) => setEmailUserEdit(e.target.value)}
+                />
+                <button type="submit">Salvar Alterações</button>
+              </form>
+            </div>
           </div>
 
           <div className="grid">
@@ -136,26 +159,7 @@ export const GradeMedico = () => {
             ))}
           </div>
 
-          <div className="edit-card">
-            <h2>Editar Consulta pelo ID</h2>
-            <form onSubmit={salvarEdicao} className="editForm">
-              <input
-                type="number"
-                placeholder="ID da Consulta"
-                value={idEdit}
-                onChange={(e) => setIdEdit(e.target.value)}
-              />
-              <MenuHorario horario={horarioEdit} setHorario={setHorarioEdit} />
-              <MenuMedico medico={medicoEdit} setMedico={setMedicoEdit} />
-              <input
-                type="text"
-                placeholder="Email do Paciente"
-                value={emailUserEdit}
-                onChange={(e) => setEmailUserEdit(e.target.value)}
-              />
-              <button type="submit">Salvar Alterações</button>
-            </form>
-          </div>
+
         </div>
       </div>
     </div>
