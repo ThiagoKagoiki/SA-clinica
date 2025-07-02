@@ -118,36 +118,28 @@
   background-color: #dc2626;
 }
 
-.addForm{
+.forms-container{
   display: flex;
+  flex-direction: row;
+  gap: 15rem;
 }
 
-.forms-container {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.form-card {
-  flex: 1 1 300px;
-  background: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 1rem;
-  max-width: 350px;
-}
-
-.form-card h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.addForm,
-.editForm {
+.form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.submit-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #1d4ed8;
 }
