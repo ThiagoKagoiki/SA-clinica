@@ -2,25 +2,28 @@ import React from "react";
 import './GradeUsuario.css'
 
 export const GradeUsuario = () => {
-  const diasDoMes = Array.from({ length: 30 }, (_, i) => i + 1); // Dias de 1 a 30
-  const colunas = 7; // Como um calendário
-
-  function handleClick(dia) {
-    setDiaSelecionado(dia);
-    setPage("agenda");
-  }
 
   return (
-    <div className="container-calendario">
-      <h2 className="calendario-titulo">Selecione um Dia</h2>
 
-      <div className="dias">
-        {diasDoMes.map((dia) => (
-          <button className="btn-calendario">
-            {dia}
-          </button>
-        ))}
-      </div>
+    <div className="grid">
+      <h1>Minhas Consultas</h1>
+      {/* {consultas.map((consulta) => (
+        <div className="consulta-item" key={consulta.id}>
+          <div className="consulta-item-header">
+            <div className="consulta-item-info">
+              <h3 className="consulta-item-title">DR. {consulta.medico}</h3>
+              <div className="consulta-item-details">
+                <p><span className="font-medium">Horário:</span> {consulta.horario}</p>
+                <p><span className="font-medium">Paciente:</span> {consulta.emailUser}</p>
+                <p><span className="font-medium">N°:</span> {consulta.id}</p>
+              </div>
+            </div>
+            <div className="consulta-actions">
+              <button className="action-button-red" onClick={() => removerConsulta(consulta.id)}>Deletar</button>
+            </div>
+          </div>
+        </div>
+      ))} */}
     </div>
   );
 }
