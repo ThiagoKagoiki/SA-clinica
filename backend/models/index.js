@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import UserModel from './User.js'; // Note a extensão .js obrigatória
+import ConsultaModel from './Consulta.js';
 
 dotenv.config(); // Carrega variáveis do .env
 
@@ -20,6 +21,7 @@ const db = {
   Sequelize,
   sequelize,
   User: UserModel(sequelize),
+  Consulta: ConsultaModel(sequelize)
 };
 
 export default db;
