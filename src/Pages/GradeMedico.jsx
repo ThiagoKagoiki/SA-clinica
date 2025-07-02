@@ -18,16 +18,16 @@ export const GradeMedico = () => {
   const [emailUserEdit, setEmailUserEdit] = useState('');
 
 
-  useEffect(() => {
-    async function carregarConsultas() {
-      try {
-        const resposta = await verConsulta()
-        console.log("#########TIPO%%%%%%%%%%%", resposta.data)
-        setConsultas(resposta.data)
-      } catch (error) {
-        console.error("erro ao carregar consultas: ", error)
-      }
+  const carregarConsultas = async () => {
+    try {
+      const resposta = await verConsulta();
+      setConsultas(resposta.data);
+    } catch (error) {
+      console.error("erro ao carregar consultas: ", error);
     }
+  };
+
+  useEffect(() => {
     carregarConsultas()
   }, [])
 
@@ -67,32 +67,37 @@ export const GradeMedico = () => {
     }
   }
 
-  // const salvarEdicao = async (e) => {
-  //   e.preventDefault()
-  //   if (!idEdit || !horarioEdit || !medicoEdit || !emailUserEdit) {
-  //     alert("Preencha todos os campos para editar uma consulta");
-  //     return;
-  //   }
+  const salvarEdicao = async (e) => {
+    e.preventDefault()
+    if (!idEdit || !horarioEdit || !medicoEdit || !emailUserEdit) {
+      alert("Preencha todos os campos para editar uma consulta");
+      return;
+    }
 
-  //   try {
-  //     await editarConsulta(idEdit, {
-  //       horario: horarioEdit,
-  //       medico: medicoEdit,
-  //       emailUser: emailUserEdit
-  //     })
-  //     // console.log(resposta.data)
-  //     alert("Consulta editada com sucesso!");
-  //     setIdEdit('');
-  //     setHorarioEdit('');
-  //     setMedicoEdit('');
-  //     setEmailUserEdit('');
-  //     carregarConsultas();
-  //   } catch (error) {
-  //     console.error("Erro ao editar consulta: ", error.response ? error.response.data : error.message)
-  //     alert("Erro ao editar consulta")
-  //     console.log(error)
-  //   }
-  // }
+    try {
+      const dados = {
+        id: idEdit,
+        horario: horarioEdit,
+        medico: medicoEdit,
+        emailUser: emailUserEdit
+      }
+      await editarConsulta(idEdit, dados)
+      // console.log(resposta.data)
+      alert("Consulta editada com sucesso!");
+      setIdEdit('');
+      setHorarioEdit('');
+      setMedicoEdit('');
+      setEmailUserEdit('');
+      carregarConsultas()
+    } catch (error) {
+      console.error("ERRO COMPLETO:", error);
+      console.error("ERRO RESPONSE:", error.response);
+      console.error("ERRO DATA:", error.response?.data);
+      console.error("ERRO STATUS:", error.response?.status);
+      alert("Erro ao editar consulta")
+      console.log(error)
+    }
+  }
 
 
 
@@ -131,7 +136,7 @@ export const GradeMedico = () => {
             ))}
           </div>
 
-          {/* <div className="edit-card">
+          <div className="edit-card">
             <h2>Editar Consulta pelo ID</h2>
             <form onSubmit={salvarEdicao} className="editForm">
               <input
@@ -150,7 +155,7 @@ export const GradeMedico = () => {
               />
               <button type="submit">Salvar Alterações</button>
             </form>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

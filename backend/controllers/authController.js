@@ -101,7 +101,6 @@ export const editarConsulta = async (req, res) => {
     if (novaConsulta[0] === 0) {
       res.status(400).json({
         mensagem: 'Id inexistente',
-        detalhes: err.message
       });
     }
 
