@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './MenuDrop.css'
 
 export const MenuDrop = ({cargo, setCargo}) => {
 
@@ -12,7 +11,7 @@ export const MenuDrop = ({cargo, setCargo}) => {
 
     return(
         <div>
-            <select className="opcoes" value={cargo} onChange={handleOption}>
+            <select className="medicos" value={cargo} onChange={handleOption}>
                 <option value="">Cargos</option>
                 <option value="paciente">Paciente</option>
                 <option value="admin">Admin</option>

@@ -107,3 +107,17 @@ export const editarConsulta = async(req, res) => {
     });
   }
 }
+
+export const verConsulta = async(req, res) => {
+  try {
+
+    const consultas = await db.Consulta.findAll();
+
+    res.json(consultas)
+  } catch (err) {
+    res.status(500).json({
+      erro: 'Erro ao ver Consulta',
+      detalhes: err.message
+    });
+  }
+}
