@@ -55,7 +55,7 @@ export const login = async (req, res) => {
 
 //Consultas
 
-export const addConsulta = async(req, res) => {
+export const addConsulta = async (req, res) => {
   try {
     const { horario, medico, emailUser } = req.body;
 
@@ -73,11 +73,11 @@ export const addConsulta = async(req, res) => {
   }
 }
 
-export const deletarConsulta = async(req, res) => {
+export const deletarConsulta = async (req, res) => {
   try {
     const { id } = req.params;
 
-    await db.Consulta.destroy({ where: {id} });
+    await db.Consulta.destroy({ where: { id } });
 
     res.status(201).json({
       mensagem: 'Consulta deletada com sucesso',
@@ -90,11 +90,20 @@ export const deletarConsulta = async(req, res) => {
   }
 }
 
-export const editarConsulta = async(req, res) => {
+export const editarConsulta = async (req, res) => {
   try {
     const { id, horario, medico, emailUser } = req.body;
+    // const {horario, medico, emailUser} = req.body
 
-    const novaConsulta = await db.Consulta.update({ horario, medico, emailUser }, {where: {id}});
+
+    const novaConsulta = await db.Consulta.update({ horario, medico, emailUser }, { where: { id } });
+
+    if (novaConsulta[0] === 0) {
+      res.status(400).json({
+        mensagem: 'Id inexistente',
+        detalhes: err.message
+      });
+    }
 
     res.status(201).json({
       mensagem: 'Consulta editada com sucesso',
@@ -108,7 +117,7 @@ export const editarConsulta = async(req, res) => {
   }
 }
 
-export const verConsulta = async(req, res) => {
+export const verConsulta = async (req, res) => {
   try {
 
     const consultas = await db.Consulta.findAll();

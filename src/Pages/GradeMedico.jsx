@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './GradeMedico.css'
-import { adicionarConsulta, deletarConsulta, verConsulta } from '../services/api';
+import { adicionarConsulta, deletarConsulta, editarConsulta, verConsulta } from '../services/api';
 import { MenuMedico } from '../Componentes/MenuMedico';
 import { MenuHorario } from '../Componentes/MenuHorario';
 
@@ -10,6 +10,13 @@ export const GradeMedico = () => {
   const [medico, setMedico] = useState('')
   const [emailUser, setEmailUser] = useState('')
   const [consultas, setConsultas] = useState([])
+  // const [editandoId, setEditandoId] = useState(null);
+
+  const [idEdit, setIdEdit] = useState('');
+  const [horarioEdit, setHorarioEdit] = useState('');
+  const [medicoEdit, setMedicoEdit] = useState('');
+  const [emailUserEdit, setEmailUserEdit] = useState('');
+
 
   useEffect(() => {
     async function carregarConsultas() {
@@ -48,17 +55,46 @@ export const GradeMedico = () => {
     }
   }
 
-  const removerConsulta = async(id) => {
-    try{
+  const removerConsulta = async (id) => {
+    try {
       const resposta = await deletarConsulta(id)
       console.log(resposta.data)
       setConsultas(prev => prev.filter(consulta => consulta.id !== id));
-    }catch(error){
+    } catch (error) {
       console.error("Erro ao deletar consulta: ", error.response ? error.response.data : error.message)
       alert("Erro ao deletar consulta")
       console.log(error)
     }
   }
+
+  // const salvarEdicao = async (e) => {
+  //   e.preventDefault()
+  //   if (!idEdit || !horarioEdit || !medicoEdit || !emailUserEdit) {
+  //     alert("Preencha todos os campos para editar uma consulta");
+  //     return;
+  //   }
+
+  //   try {
+  //     await editarConsulta(idEdit, {
+  //       horario: horarioEdit,
+  //       medico: medicoEdit,
+  //       emailUser: emailUserEdit
+  //     })
+  //     // console.log(resposta.data)
+  //     alert("Consulta editada com sucesso!");
+  //     setIdEdit('');
+  //     setHorarioEdit('');
+  //     setMedicoEdit('');
+  //     setEmailUserEdit('');
+  //     carregarConsultas();
+  //   } catch (error) {
+  //     console.error("Erro ao editar consulta: ", error.response ? error.response.data : error.message)
+  //     alert("Erro ao editar consulta")
+  //     console.log(error)
+  //   }
+  // }
+
+
 
   return (
     <div className="container">
@@ -83,6 +119,7 @@ export const GradeMedico = () => {
                     <div className="consulta-item-details">
                       <p><span className="font-medium">Horário:</span> {consulta.horario}</p>
                       <p><span className="font-medium">Paciente:</span> {consulta.emailUser}</p>
+                      <p><span className="font-medium">N°:</span> {consulta.id}</p>
                     </div>
                   </div>
                   <div className="consulta-actions">
@@ -93,6 +130,27 @@ export const GradeMedico = () => {
               </div>
             ))}
           </div>
+
+          {/* <div className="edit-card">
+            <h2>Editar Consulta pelo ID</h2>
+            <form onSubmit={salvarEdicao} className="editForm">
+              <input
+                type="number"
+                placeholder="ID da Consulta"
+                value={idEdit}
+                onChange={(e) => setIdEdit(e.target.value)}
+              />
+              <MenuHorario horario={horarioEdit} setHorario={setHorarioEdit} />
+              <MenuMedico medico={medicoEdit} setMedico={setMedicoEdit} />
+              <input
+                type="text"
+                placeholder="Email do Paciente"
+                value={emailUserEdit}
+                onChange={(e) => setEmailUserEdit(e.target.value)}
+              />
+              <button type="submit">Salvar Alterações</button>
+            </form>
+          </div> */}
         </div>
       </div>
     </div>
