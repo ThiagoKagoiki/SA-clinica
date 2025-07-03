@@ -17,7 +17,7 @@ function App() {
             <Route path='/' element={<Cadastro/>}/>
             <Route path='/login' element={<Login/>}/>
 
-            <Route path='/' element={
+            <Route path='/medico' element={
               <PrivateRoute>
 
                 <GradeMedico/>
@@ -25,7 +25,7 @@ function App() {
               </PrivateRoute>
             }/>
 
-            <Route path='/' element={
+            <Route path='/user' element={
               <PrivateRoute>
 
                 <GradeUsuario/>

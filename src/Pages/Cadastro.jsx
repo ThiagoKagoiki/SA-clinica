@@ -3,6 +3,7 @@ import { Layout } from "../Componentes/Layout";
 import './Cadastro.css'
 import { MenuDrop } from "../Componentes/MenuDrop";
 import { registrarUsuario } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 export const Cadastro = () => {
 
@@ -10,6 +11,8 @@ export const Cadastro = () => {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [cargo, setCargo] = useState('')
+
+    const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -26,11 +29,20 @@ export const Cadastro = () => {
             setEmail('')
             setSenha('')
             setCargo('')
+            if(cargo === "paciente"){
+                navigate('/user')
+            }else if(cargo === "admin"){
+                navigate('/medico')
+            }
         } catch (error) {
             console.error("Erro ao registrar usuário:", error.response ? error.response.data : error.message);
             alert("Erro ao registrar usuário. Verifique os dados e tente novamente.");
             console.log("DEu erro", error)
         }
+    }
+
+    const irLogin = () => {
+        navigate('/login')
     }
 
     return(
@@ -44,6 +56,7 @@ export const Cadastro = () => {
                 <MenuDrop cargo={cargo} setCargo={setCargo}/>
                 <button className="btn-cadastro">Cadastrar</button>
             </form>
+            <button className="btn-cadastro-login" onClick={irLogin}>Fazer login</button>
         </div>
     )
 }

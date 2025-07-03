@@ -11,7 +11,7 @@ export const MenuDrop = ({cargo, setCargo}) => {
 
     return(
         <div>
-            <select className="medicos" value={cargo} onChange={handleOption}>
+            <select className="input-cadastro" value={cargo} onChange={handleOption}>
                 <option value="">Cargos</option>
                 <option value="paciente">Paciente</option>
                 <option value="admin">Admin</option>
