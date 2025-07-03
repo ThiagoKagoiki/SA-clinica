@@ -4,6 +4,8 @@ import './Login.css'
 import { loginUsuario } from "../services/api";
 import { useAuth } from "../hooks/useAuth";
 import { MenuDrop } from "../Componentes/MenuDrop";
+import { useNavigate } from "react-router-dom";
+
 
 
 export const Login = () => {
@@ -12,17 +14,16 @@ export const Login = () => {
     const [senha, setSenha] = useState('')
     const [cargo, setCargo] = useState('')
     const {login} = useAuth()
+    const navigate = useNavigate()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
         try{
             const data = await loginUsuario({email, senha, cargo})
-            
-            if(data.cargo === "paciente"){
-                console.log("chegou")
-            }
             login(data.usuario, data.token)
             alert("login feito")
+            console.log(data)
+            navigate('/user')
 
         }catch(error){
             console.error(error)

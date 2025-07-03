@@ -37,7 +37,7 @@ export const login = async (req, res) => {
     if(usuario.cargo !== cargo){
       return res.status(401).json({error: "Cargo inválido para este usuário"})
     }
-    
+
     const token = jwt.sign({
       id: usuario.id,
       nome: usuario.nome,
