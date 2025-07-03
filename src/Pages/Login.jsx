@@ -17,12 +17,13 @@ export const Login = () => {
         e.preventDefault()
         try{
             const data = await loginUsuario({email, senha, cargo})
-            login(data.usuario, data.token)
-
-            alert("login feito")
+            
             if(data.cargo === "paciente"){
                 console.log("chegou")
             }
+            login(data.usuario, data.token)
+            alert("login feito")
+
         }catch(error){
             console.error(error)
             alert("Falha no login")

@@ -25,7 +25,7 @@ export const registrar = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, senha } = req.body;
+  const { email, senha, cargo } = req.body;
 
   try {
     const usuario = await db.User.findOne({ where: { email } });
@@ -34,6 +34,10 @@ export const login = async (req, res) => {
       return res.status(401).json({ erro: 'Credenciais inválidas' });
     }
 
+    if(usuario.cargo !== cargo){
+      return res.status(401).json({error: "Cargo inválido para este usuário"})
+    }
+    
     const token = jwt.sign({
       id: usuario.id,
       nome: usuario.nome,
