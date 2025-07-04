@@ -139,3 +139,21 @@ export const verConsulta = async (req, res) => {
     });
   }
 }
+
+
+export const verMinhasConsultas = async (req, res) => {
+  try{
+    const emailUser = req.usuario.email
+
+    const consultas = await db.Consulta.findAll({
+      where: {emailUser}
+    })
+
+    res.json(consultas)
+  }catch(error){
+    res.status(500).json({
+      erro: "Erro ao ver suas consultas",
+      detalhes: error.menssage
+    })
+  }
+}
