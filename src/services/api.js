@@ -14,7 +14,11 @@ API.interceptors.request.use(config => {
 });
 
 export const registrarUsuario = (dados) => API.post('/registrar', dados);
-export const loginUsuario = (dados) => API.post('/login', dados);
+export const loginUsuario = async(dados) =>
+  {
+    const response = await API.post('/login', dados) 
+    return response.data
+  };
 export const acessarPainel = () => API.get('/painel');
 export const acessarAdmin = () => API.get('/admin');
 

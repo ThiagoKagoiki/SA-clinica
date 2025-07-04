@@ -20,11 +20,15 @@ export const Login = () => {
         e.preventDefault()
         try{
             const data = await loginUsuario({email, senha, cargo})
+
+            if (!data.usuario || !data.token) {
+                throw new Error("Resposta de login incompleta!");
+            }
+
             login(data.usuario, data.token)
             alert("login feito")
-            console.log(data)
+            console.log("API resposta bruta:", data);
             navigate('/user')
-
         }catch(error){
             console.error(error)
             alert("Falha no login")

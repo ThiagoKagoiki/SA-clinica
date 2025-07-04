@@ -7,7 +7,7 @@ export const AuthProvider = ({children}) => {
         const saveUser = localStorage.getItem('user')
         return saveUser && saveUser !== 'undefined' ? JSON.parse(saveUser) : null
     })
-    const [token, setToken] = useState(() => localStorage.getItem('token' || ''))
+    const [token, setToken] = useState(() => localStorage.getItem(('token') || ''))
 
     useEffect(() => {
         if(token){
@@ -17,18 +17,23 @@ export const AuthProvider = ({children}) => {
         }
     }, [token])
 
+    useEffect(() => {
+        if(user){
+            localStorage.setItem('user', JSON.stringify(user))
+        }else{
+            localStorage.removeItem('user')
+        }
+    }, [user])
+
     const login = (userData, token) => {
         setUser(userData)
         setToken(token)
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(userData));
+        console.log(")))))))))))))", userData)
     }
 
     const logout = () => {
         setUser(null)
         setToken('')
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
     }
 
     return(
