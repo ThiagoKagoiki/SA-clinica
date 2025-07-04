@@ -3,27 +3,28 @@ import './GradeUsuario.css'
 
 export const GradeUsuario = () => {
 
-  return (
+  const consultas = [
+  { id: 1, data: '2025-07-05', hora: '14:00', medico: 'Dr. Silva', especialidade: 'Cardiologia' },
+  { id: 2, data: '2025-07-10', hora: '09:00', medico: 'Dra. Pereira', especialidade: 'Dermatologia' },
+];
 
-    <div className="grid">
-      <h1>Minhas Consultas</h1>
-      {/* {consultas.map((consulta) => (
-        <div className="consulta-item" key={consulta.id}>
-          <div className="consulta-item-header">
-            <div className="consulta-item-info">
-              <h3 className="consulta-item-title">DR. {consulta.medico}</h3>
-              <div className="consulta-item-details">
-                <p><span className="font-medium">Horário:</span> {consulta.horario}</p>
-                <p><span className="font-medium">Paciente:</span> {consulta.emailUser}</p>
-                <p><span className="font-medium">N°:</span> {consulta.id}</p>
-              </div>
-            </div>
-            <div className="consulta-actions">
-              <button className="action-button-red" onClick={() => removerConsulta(consulta.id)}>Deletar</button>
-            </div>
-          </div>
-        </div>
-      ))} */}
+  return (
+    <div>
+      <h2>Minhas Consultas</h2>
+      {consultas.length === 0 ? (
+        <p>Você não tem consultas agendadas.</p>
+      ) : (
+        <ul>
+          {consultas.map((consulta) => (
+            <li key={consulta.id}>
+              <strong>Data:</strong> {consulta.data} <br />
+              <strong>Hora:</strong> {consulta.hora} <br />
+              <strong>Médico:</strong> {consulta.medico} <br />
+              <strong>Especialidade:</strong> {consulta.especialidade}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
