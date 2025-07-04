@@ -16,9 +16,22 @@ export const PrivateRoute = ({ children, allowedRoles = [] }) => {
         return <Navigate to={"/login"} replace />
     }
 
-    if (allowedRoles.length > 0 && !allowedRoles.includes(user.cargo)) {
+    const userCargo = user.cargo?.toLowerCase().trim();
+    const allowedRolesLower = allowedRoles.map(role => role.toLowerCase().trim());
+
+    console.log(`user.cargo raw: "${user.cargo}" (length: ${user.cargo?.length})`);
+    console.log(`allowedRolesLower:`, allowedRolesLower);
+    console.log(`userCargo normalized: "${userCargo}"`);
+    console.log(`allowedRolesLower.includes(userCargo):`, allowedRolesLower.includes(userCargo))
+
+    if (allowedRoles.length > 0 && !allowedRolesLower.includes(userCargo)) {
+        console.log("Cargo do usuário não autorizado:", userCargo);
         return <Navigate to="/login" replace />;
     }
+
+    // if (allowedRoles.length > 0 && !allowedRoles.includes(user.cargo)) {
+    //     return <Navigate to="/login" replace />;
+    // }
 
     return children
 }
