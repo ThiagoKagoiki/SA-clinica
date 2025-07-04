@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './GradeMedico.css'
+import './Grades.css'
 import { adicionarConsulta, deletarConsulta, editarConsulta, verConsulta } from '../services/api';
 import { MenuMedico } from '../Componentes/MenuMedico';
 import { MenuHorario } from '../Componentes/MenuHorario';
