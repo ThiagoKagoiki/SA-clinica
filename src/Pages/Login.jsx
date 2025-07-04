@@ -28,7 +28,11 @@ export const Login = () => {
             login(data.usuario, data.token)
             alert("login feito")
             console.log("API resposta bruta:", data);
-            navigate('/user')
+            if(data.cargo === 'paciente'){
+                navigate('/user')
+            }else{
+                navigate('/medico')
+            }
         }catch(error){
             console.error(error)
             alert("Falha no login")
