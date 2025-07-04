@@ -9,5 +9,9 @@ export const PrivateRoute = ({children}) => {
         return <Navigate to={"/login"} replace/>
     }
 
+    if (allowedRoles.length > 0 && !allowedRoles.includes(user.cargo)) {
+        return <Navigate to="/login" replace />;
+    }
+
     return children
 }

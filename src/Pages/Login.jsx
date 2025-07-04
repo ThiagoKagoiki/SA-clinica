@@ -28,7 +28,7 @@ export const Login = () => {
             login(data.usuario, data.token)
             alert("login feito")
             console.log("API resposta bruta:", data);
-            if(data.cargo === 'paciente'){
+            if(data.usuario.cargo === "paciente"){
                 navigate('/user')
             }else{
                 navigate('/medico')
