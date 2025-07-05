@@ -29,6 +29,12 @@ export default (sequelize) => {
             unique: true,
             fields: ['medico', "horario"]
         }
+    ],
+    indexes: [
+      {
+        unique: true,
+        fields: ['emailUser', 'horario']
+      }
     ]
   });
 
