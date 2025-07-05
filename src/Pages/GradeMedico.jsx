@@ -48,6 +48,7 @@ export const GradeMedico = () => {
       setHorario('')
       setMedico('')
       setEmailUser('')
+      carregarConsultas();
     } catch (error) {
       console.error("Erro ao registrar consulta: ", error.response ? error.response.data : error.message)
       alert("Erro ao adicionar consulta")
