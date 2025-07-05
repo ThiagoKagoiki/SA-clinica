@@ -5,22 +5,20 @@ import { verConsultaEmail } from "../services/api";
 export const GradeUsuario = () => {
 
   const [consultas, setConsultas] = useState([])
-  const emailUser = localStorage.getItem('userEmail')
 
   useEffect(() => {
 
     const carregarConsultas = async () => {
       try {
-        const resposta = await verConsultaEmail(emailUser);
+        const resposta = await verConsultaEmail();
         setConsultas(resposta.data);
       } catch (error) {
         console.error("erro ao carregar consultas: ", error);
       }
-      console.log("%%%%%%%%%%%%%", emailUser) //esta retornando null
     };
   
     carregarConsultas()
-  }, [emailUser])
+  }, [])
 
   return (
     <div className="container">

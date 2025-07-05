@@ -41,6 +41,7 @@ export const login = async (req, res) => {
     const token = jwt.sign({
       id: usuario.id,
       nome: usuario.nome,
+      email: usuario.email,
       cargo: usuario.cargo
     }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Adicione uma expiração para o token
 
@@ -144,6 +145,8 @@ export const verConsulta = async (req, res) => {
 export const verMinhasConsultas = async (req, res) => {
   try{
     const emailUser = req.usuario.email
+
+    console.log(">>> Email autenticado:", emailUser);
 
     const consultas = await db.Consulta.findAll({
       where: {emailUser}
