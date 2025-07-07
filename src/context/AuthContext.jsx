@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext()
 
@@ -28,7 +28,6 @@ export const AuthProvider = ({children}) => {
     const login = (userData, token) => {
         setUser(userData)
         setToken(token)
-        console.log(")))))))))))))", userData)
     }
 
     const logout = () => {

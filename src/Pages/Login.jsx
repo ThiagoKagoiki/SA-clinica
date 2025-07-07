@@ -25,16 +25,12 @@ export const Login = () => {
             localStorage.setItem('userId', data.usuario.id);
             localStorage.setItem('userEmail', data.usuario.email);
 
-            console.log("!!!!!!!!!!!!!!", data)
-            // console.log("$$$$$$$$$$$$$$$$$$", data.usuario.email)
-
             if (!data.usuario || !data.token) {
                 throw new Error("Resposta de login incompleta!");
             }
 
             login(data.usuario, data.token)
-            alert("login feito")
-            console.log("API resposta bruta:", data);
+            alert("Login concluído")
             if (data.usuario.cargo === "paciente") {
                 navigate('/user')
             } else {

@@ -6,7 +6,6 @@ export const MenuHorario = ({horario, setHorario}) => {
     const handleOption = (e) => {
         const value = e.target.value
         setHorario(value)
-        console.log('Valor selecionado:', value);
     }
 
     return(

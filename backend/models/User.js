@@ -8,21 +8,20 @@ export default (sequelize) => {
       primaryKey: true,
       autoIncrement: true
     },
-    nome: DataTypes.STRING, // Nome do usuário
+    nome: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
-      unique: true // Garante que o e-mail não se repita
+      unique: true
     },
-    senha: DataTypes.STRING, // Senha que será criptografada
+    senha: DataTypes.STRING,
     cargo: {
-      // Enum para cargos permitidos
       type: DataTypes.ENUM('admin', 'paciente'),
-      defaultValue: 'paciente' // padrão ao criar usuário
+      defaultValue: 'paciente'
     }
   });
 
   User.beforeCreate(async (user) => {
-    user.senha = await bcrypt.hash(user.senha, 10); // Criptografa a senha
+    user.senha = await bcrypt.hash(user.senha, 10);
   });
 
   return User;

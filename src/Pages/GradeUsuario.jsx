@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import './Grades.css'
 import { verConsultaEmail } from "../services/api";
 

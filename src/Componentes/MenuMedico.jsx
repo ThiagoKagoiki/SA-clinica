@@ -6,7 +6,6 @@ export const MenuMedico = ({medico, setMedico}) => {
     const handleOption = (e) => {
         const value = e.target.value
         setMedico(value)
-        console.log('Valor selecionado:', value);
     }
 
     return(

@@ -10,7 +10,6 @@ export const GradeMedico = () => {
   const [medico, setMedico] = useState('')
   const [emailUser, setEmailUser] = useState('')
   const [consultas, setConsultas] = useState([])
-  // const [editandoId, setEditandoId] = useState(null);
 
   const [idEdit, setIdEdit] = useState('');
   const [horarioEdit, setHorarioEdit] = useState('');
@@ -40,31 +39,24 @@ export const GradeMedico = () => {
     }
 
     const dados = { horario, medico, emailUser }
-    console.log("#######TIPO#######", dados)
 
     try {
       const resposta = await adicionarConsulta(dados)
-      console.log(resposta.data)
       setHorario('')
       setMedico('')
       setEmailUser('')
       carregarConsultas();
     } catch (error) {
-      console.error("Erro ao registrar consulta: ", error.response ? error.response.data : error.message)
       alert("Erro ao adicionar consulta")
-      console.log("erro: ", error)
     }
   }
 
   const removerConsulta = async (id) => {
     try {
       const resposta = await deletarConsulta(id)
-      console.log(resposta.data)
       setConsultas(prev => prev.filter(consulta => consulta.id !== id));
     } catch (error) {
-      console.error("Erro ao deletar consulta: ", error.response ? error.response.data : error.message)
       alert("Erro ao deletar consulta")
-      console.log(error)
     }
   }
 
@@ -83,7 +75,6 @@ export const GradeMedico = () => {
         emailUser: emailUserEdit
       }
       await editarConsulta(idEdit, dados)
-      // console.log(resposta.data)
       alert("Consulta editada com sucesso!");
       setIdEdit('');
       setHorarioEdit('');
@@ -91,12 +82,7 @@ export const GradeMedico = () => {
       setEmailUserEdit('');
       carregarConsultas()
     } catch (error) {
-      console.error("ERRO COMPLETO:", error);
-      console.error("ERRO RESPONSE:", error.response);
-      console.error("ERRO DATA:", error.response?.data);
-      console.error("ERRO STATUS:", error.response?.status);
       alert("Erro ao editar consulta")
-      console.log(error)
     }
   }
 

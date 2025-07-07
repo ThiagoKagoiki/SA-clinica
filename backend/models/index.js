@@ -1,11 +1,10 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
-import UserModel from './User.js'; // Note a extensão .js obrigatória
+import UserModel from './User.js';
 import ConsultaModel from './Consulta.js';
 
-dotenv.config(); // Carrega variáveis do .env
+dotenv.config();
 
-// Cria conexão com o PostgreSQL usando Sequelize
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -16,7 +15,6 @@ const sequelize = new Sequelize(
   }
 );
 
-// Exporta a instância do banco e os modelos
 const db = {
   Sequelize,
   sequelize,

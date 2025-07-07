@@ -6,7 +6,6 @@ export const MenuDrop = ({cargo, setCargo}) => {
     const handleOption = (e) => {
         const value = e.target.value
         setCargo(value)
-        console.log('Valor selecionado:', value);
     }
 
     return(

@@ -1,8 +1,7 @@
 import db from '../models/index.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import 'dotenv/config'; // Garante que as variáveis de ambiente sejam carregadas
-import { where } from 'sequelize';
+import 'dotenv/config';
 
 
 //Usuario
@@ -43,7 +42,7 @@ export const login = async (req, res) => {
       nome: usuario.nome,
       email: usuario.email,
       cargo: usuario.cargo
-    }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Adicione uma expiração para o token
+    }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.json({
       mensagem: 'Login bem-sucedido',
@@ -56,7 +55,7 @@ export const login = async (req, res) => {
       token
     });
   } catch (err) {
-    console.error('Erro no login:', err); // Logar o erro para depuração
+    console.error('Erro no login:', err);
     res.status(500).json({
       erro: 'Erro interno do servidor',
       detalhes: err.message
@@ -104,8 +103,6 @@ export const deletarConsulta = async (req, res) => {
 export const editarConsulta = async (req, res) => {
   try {
     const { id, horario, medico, emailUser } = req.body;
-    // const {horario, medico, emailUser} = req.body
-
 
     const novaConsulta = await db.Consulta.update({ horario, medico, emailUser }, { where: { id } });
 
@@ -145,8 +142,6 @@ export const verConsulta = async (req, res) => {
 export const verMinhasConsultas = async (req, res) => {
   try{
     const emailUser = req.usuario.email
-
-    console.log(">>> Email autenticado:", emailUser);
 
     const consultas = await db.Consulta.findAll({
       where: {emailUser}
